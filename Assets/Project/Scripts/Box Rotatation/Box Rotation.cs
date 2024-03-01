@@ -3,16 +3,25 @@ using UnityEngine;
 
 public class BoxRotation : MonoBehaviour
 {
-    [SerializeField] private float rotationSpeed = 30f;
+    [SerializeField] private float rotationSpeed = 1f;
+    [SerializeField] private float rotationAngle = 45f;
+
+    private Coroutine currentRotation;
 
     internal void RotateRight()
     {
-        StartCoroutine(Rotate(Vector3.forward * 10));
+        if (currentRotation != null)
+            StopCoroutine(currentRotation);
+
+        currentRotation = StartCoroutine(Rotate(Vector3.forward * rotationAngle));
     }
 
     internal void RotateLeft()
     {
-        StartCoroutine(Rotate(Vector3.back * 10));
+        if (currentRotation != null)
+            StopCoroutine(currentRotation);
+
+        currentRotation = StartCoroutine(Rotate(Vector3.back * rotationAngle));
     }
 
     private IEnumerator Rotate(Vector3 rotation)
