@@ -25,5 +25,12 @@ public class BoxRotationManager : MonoBehaviour
         _boxRotationIndex++;
     }
 
-    internal BoxRotation GetBoxRotation() => _boxRotation;
+    internal BoxRotation GetBoxRotation()
+    {
+        Debug.Log("rotate");
+        return _boxRotation;
+    }
+
+
+
 }

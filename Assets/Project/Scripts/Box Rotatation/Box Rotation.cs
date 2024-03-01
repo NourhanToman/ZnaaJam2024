@@ -14,6 +14,7 @@ public class BoxRotation : MonoBehaviour
             StopCoroutine(currentRotation);
 
         currentRotation = StartCoroutine(Rotate(Vector3.forward * rotationAngle));
+        Debug.Log("rotate");
     }
 
     internal void RotateLeft()
