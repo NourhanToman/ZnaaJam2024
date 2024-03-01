@@ -6,6 +6,8 @@ public class InputManager : MonoBehaviour
     private GameInputSystem.PlayerActions _playerActions;
 
     private ServiceLocator _serviceLocator;
+    private BoxRotationManager _boxRotationManager;
+    private PlayerJumping _playerJumping;
 
     private void Awake()
     {
@@ -14,9 +16,17 @@ public class InputManager : MonoBehaviour
 
         _playerInput = new GameInputSystem();
         _playerActions = _playerInput.Player;
+    }
 
-        _playerActions.BoxRotate.performed += _ => _serviceLocator.GetService<BoxRotationManager>().GetBoxRotation().FlipRotation();
-        _playerActions.Jump.performed += context => _serviceLocator.GetService<PlayerJumping>().HandleJump(context.ReadValue<float>() > 0);
+    private void Start()
+    {
+        _boxRotationManager = _serviceLocator.GetService<BoxRotationManager>();
+        _playerJumping = _serviceLocator.GetService<PlayerJumping>();
+
+        _playerActions.BoxRotateRight.performed += _ => _boxRotationManager.GetBoxRotation().RotateRight();
+        _playerActions.BoxRotateLeft.performed += _ => _boxRotationManager.GetBoxRotation().RotateLeft();
+
+        _playerActions.Jump.performed += context => _playerJumping.HandleJump(context.ReadValue<float>() > 0);
     }
 
     private void OnEnable() => _playerInput.Enable();
