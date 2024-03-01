@@ -9,10 +9,8 @@ public class PlayerJumping : MonoBehaviour
     [SerializeField] private float lowJumpGravity = 2f;
     [SerializeField] private int maxJumpCount = 2;
 
-    [Header("References (FOR DEBUG ONLY)")]
-    [SerializeField] private bool isJumping = false;
-
-    [SerializeField] private int jumpCount = 0;
+    private bool isJumping = false;
+    private int jumpCount = 0;
     private Rigidbody2D rb;
 
     private void Awake()
