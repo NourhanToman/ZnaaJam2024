@@ -15,7 +15,9 @@ public class InputManager : MonoBehaviour
         _playerInput = new GameInputSystem();
         _playerActions = _playerInput.Player;
 
-        _playerActions.BoxRotate.performed += _ => _serviceLocator.GetService<BoxRotationManager>().GetBoxRotation().FlipRotation();
+        _playerActions.BoxRotateRight.performed += _ => _serviceLocator.GetService<BoxRotationManager>().GetBoxRotation().RotateRight();
+        _playerActions.BoxRotateLeft.performed += _ => _serviceLocator.GetService<BoxRotationManager>().GetBoxRotation().RotateLeft();
+
         _playerActions.Jump.performed += context => _serviceLocator.GetService<PlayerJumping>().HandleJump(context.ReadValue<float>() > 0);
     }
 

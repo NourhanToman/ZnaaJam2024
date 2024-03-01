@@ -24,9 +24,18 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Box Rotate",
+                    "name": "Box Rotate Left",
                     "type": "Button",
                     "id": "c82c165e-584f-4685-b4c4-b1945441e651",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Box Rotate Right",
+                    "type": "Button",
+                    "id": "b731f75e-6614-4ed2-a8d0-f248f7506ff0",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -215,7 +224,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
-                    "action": "Box Rotate",
+                    "action": "Box Rotate Left",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -226,18 +235,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "Box Rotate",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "33be32dd-5aba-4943-a285-064920179fbe",
-                    "path": "<Mouse>/rightButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Box Rotate",
+                    "action": "Box Rotate Left",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -248,7 +246,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Touch",
-                    "action": "Box Rotate",
+                    "action": "Box Rotate Left",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -259,7 +257,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Joystick",
-                    "action": "Box Rotate",
+                    "action": "Box Rotate Left",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -270,7 +268,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "XR",
-                    "action": "Box Rotate",
+                    "action": "Box Rotate Left",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -282,6 +280,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "93186798-20a5-449a-be66-59718e8fe78a",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Box Rotate Right",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f001f979-9e3e-4450-a81d-765fc2e44e45",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Box Rotate Right",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

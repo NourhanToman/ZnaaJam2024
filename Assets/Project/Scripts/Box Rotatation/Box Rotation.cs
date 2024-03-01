@@ -1,21 +1,30 @@
+using System.Collections;
 using UnityEngine;
 
 public class BoxRotation : MonoBehaviour
 {
     [SerializeField] private float rotationSpeed = 30f;
-    private int rotationDirection = 1; // 1 for right, -1 for left
 
-    private void Start()
+    internal void RotateRight()
     {
-        // Randomly set the initial rotation direction
-        rotationDirection = Random.Range(0, 2) * 2 - 1; // will be either -1 or 1
+        StartCoroutine(Rotate(Vector3.forward * 10));
     }
 
-    private void Update()
+    internal void RotateLeft()
     {
-        // Rotate the cube
-        transform.Rotate(0, 0, rotationSpeed * Time.deltaTime * rotationDirection);
+        StartCoroutine(Rotate(Vector3.back * 10));
     }
 
-    internal void FlipRotation() => rotationDirection *= -1;
+    private IEnumerator Rotate(Vector3 rotation)
+    {
+        Quaternion startRotation = transform.rotation;
+        Quaternion endRotation = startRotation * Quaternion.Euler(rotation);
+        float t = 0.0f;
+        while (t < 1.0f)
+        {
+            t += Time.deltaTime * rotationSpeed;
+            transform.rotation = Quaternion.Slerp(startRotation, endRotation, t);
+            yield return null;
+        }
+    }
 }
