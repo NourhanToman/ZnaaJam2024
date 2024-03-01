@@ -2,14 +2,18 @@ using UnityEngine;
 
 public class PlayerJumping : MonoBehaviour
 {
+    [Header("Jumping Settings")]
     [SerializeField] private float jumpForce = 5f;
+
     [SerializeField] private float fallGravity = 2.5f;
     [SerializeField] private float lowJumpGravity = 2f;
     [SerializeField] private int maxJumpCount = 2;
 
-    private Rigidbody2D rb;
+    [Header("References (FOR DEBUG ONLY)")]
     [SerializeField] private bool isJumping = false;
+
     [SerializeField] private int jumpCount = 0;
+    private Rigidbody2D rb;
 
     private void Awake()
     {
@@ -39,7 +43,7 @@ public class PlayerJumping : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag(GameConstant.GroundTag))
             jumpCount = 0;
