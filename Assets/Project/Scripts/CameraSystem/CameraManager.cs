@@ -6,6 +6,7 @@ using UnityEngine;
 public class CameraManager : MonoBehaviour
 {
     [SerializeField] CinemachineVirtualCamera [] virtualCamera;
+    [SerializeField] private GameEvents LevelComplete;
 
     int on = 10;
     int off = 0;
@@ -15,13 +16,9 @@ public class CameraManager : MonoBehaviour
         offAllCams();
         virtualCamera[0].Priority = on;
     }
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            SwitchCam();
-        }
-    }
+    private void OnEnable() => LevelComplete.GameAction += SwitchCam;
+
+    private void OnDisable() => LevelComplete.GameAction -= SwitchCam;
     void SwitchCam()
     {
         if (nextCam < virtualCamera.Length-1)
