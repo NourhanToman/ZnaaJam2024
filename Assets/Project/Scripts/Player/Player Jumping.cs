@@ -9,9 +9,13 @@ public class PlayerJumping : MonoBehaviour
     [SerializeField] private float lowJumpGravity = 2f;
     [SerializeField] private int maxJumpCount = 2;
 
-    private bool isJumping = false;
-    private int jumpCount = 0;
+    [Header("Jumping State (FOR DEUBBING ONLY)")]
+    [SerializeField] private bool isJumping = false;
+
+    [SerializeField] private int jumpCount = 0;
     private Rigidbody2D rb;
+
+    internal float SetJumpForce { set => jumpForce = value; }
 
     private void Awake()
     {
@@ -45,6 +49,12 @@ public class PlayerJumping : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag(GameConstant.GroundTag))
+            jumpCount = 0;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag(GameConstant.GroundTag))
             jumpCount = 0;
