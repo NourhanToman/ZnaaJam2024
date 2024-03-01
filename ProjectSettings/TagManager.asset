@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Ground
   - Seeds
+  - Obstacle
+  - Level Complete
   layers:
   - Default
   - TransparentFX
@@ -14,7 +16,7 @@ TagManager:
   - Water
   - UI
   - Seeds
-  - 
+  - Player
   - 
   - 
   - 
@@ -40,6 +42,15 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 3946506189
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Obsticals
+    uniqueID: 4157693981
+    locked: 0
+  - name: Player
+    uniqueID: 2143830377
     locked: 0
