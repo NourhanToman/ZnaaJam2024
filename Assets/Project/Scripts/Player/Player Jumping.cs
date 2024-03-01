@@ -29,18 +29,21 @@ public class PlayerJumping : MonoBehaviour
             jumpCount++;
         }
 
-        if (rb.velocity.y < 0)
-            rb.gravityScale = fallGravity;
-        else if (rb.velocity.y > 0 && !isJumpRequested)
-            rb.gravityScale = lowJumpGravity;
-        else
-            rb.gravityScale = 1f;
-
         if (isJumping)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             isJumping = false;
         }
+    }
+
+    private void Update()
+    {
+        if (rb.velocity.y < 0)
+            rb.gravityScale = fallGravity;
+        else if (rb.velocity.y > 0)
+            rb.gravityScale = lowJumpGravity;
+        else
+            rb.gravityScale = 1f;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

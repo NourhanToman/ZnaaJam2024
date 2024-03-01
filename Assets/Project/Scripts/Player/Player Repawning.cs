@@ -8,6 +8,8 @@ public class PlayerRepawning : MonoBehaviour
     [SerializeField][Range(0, 10)] private float _disableColliderInSeconds = 1.5f;
     [SerializeField] private Transform[] _playerSpawnPoints;
 
+    [SerializeField] private GameEvents _gameEvents;
+
     private Transform _playerSpawnPoint;
     private int _currentSpawnPointIndex = 0;
 
@@ -28,6 +30,8 @@ public class PlayerRepawning : MonoBehaviour
             gameObject.transform.position = _playerSpawnPoint.position;
             StartCoroutine(DisableColliders());
             StartCoroutine(FlashColor());
+
+            _gameEvents.GameActionIntParameter?.Invoke(25);
         }
     }
 
