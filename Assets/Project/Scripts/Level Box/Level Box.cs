@@ -7,6 +7,7 @@ public class LevelBox : MonoBehaviour
     [SerializeField] private float rotationAngle = 45f;
     [SerializeField] private float _playerScale = 2f;
     [SerializeField] private float _playerJumpForce = 1f;
+    [SerializeField] private SpriteRenderer[] _obstacleSpriteRenderers;
 
     internal Collider2D Coolider2D { get; private set; }
 
@@ -15,6 +16,21 @@ public class LevelBox : MonoBehaviour
     internal float PlayerJumpForce => _playerJumpForce;
 
     private void Awake() => Coolider2D = GetComponent<Collider2D>();
+
+    private IEnumerator Rotate(Vector3 rotation)
+    {
+        Quaternion startRotation = transform.rotation;
+        Quaternion endRotation = startRotation * Quaternion.Euler(rotation);
+
+        float t = 0.0f;
+
+        while (t < 1.0f)
+        {
+            t += Time.deltaTime * rotationSpeed;
+            transform.rotation = Quaternion.Slerp(startRotation, endRotation, t);
+            yield return null;
+        }
+    }
 
     internal void RotateRight()
     {
@@ -32,18 +48,43 @@ public class LevelBox : MonoBehaviour
         currentRotation = StartCoroutine(Rotate(Vector3.back * rotationAngle));
     }
 
-    private IEnumerator Rotate(Vector3 rotation)
+    internal IEnumerator DisbaleObstcals()
     {
-        Quaternion startRotation = transform.rotation;
-        Quaternion endRotation = startRotation * Quaternion.Euler(rotation);
+        yield return StartCoroutine(FadeOutObstacles(1f));
+        SetObstacleToFalse();
+    }
 
-        float t = 0.0f;
+    private IEnumerator FadeOutObstacles(float duration)
+    {
+        float startTime = Time.time;
 
-        while (t < 1.0f)
+        while (Time.time - startTime < duration)
         {
-            t += Time.deltaTime * rotationSpeed;
-            transform.rotation = Quaternion.Slerp(startRotation, endRotation, t);
+            float t = (Time.time - startTime) / duration;
+
+            foreach (SpriteRenderer renderer in _obstacleSpriteRenderers)
+            {
+                Color color = renderer.color;
+                color.a = Mathf.Lerp(1, 0, t);
+                renderer.color = color;
+            }
+
             yield return null;
         }
+
+        foreach (SpriteRenderer renderer in _obstacleSpriteRenderers)
+        {
+            Color color = renderer.color;
+            color.a = 0;
+            renderer.color = color;
+        }
+
+        SetObstacleToFalse();
+    }
+
+    private void SetObstacleToFalse()
+    {
+        foreach (SpriteRenderer renderer in _obstacleSpriteRenderers)
+            renderer.gameObject.SetActive(false);
     }
 }
