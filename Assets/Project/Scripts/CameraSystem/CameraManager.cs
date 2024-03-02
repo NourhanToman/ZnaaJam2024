@@ -37,9 +37,4 @@ public class CameraManager : MonoBehaviour
         for (int i = 0; i < virtualCamera.Length; i++)
             virtualCamera[i].Priority = off;
     }
-
-    private void LateUpdate()
-    {
-        
-    }
 }

@@ -13,17 +13,19 @@ public class MainmenuUIManager : MonoBehaviour
         //AudioManager.instance.PlaySFX("ButtonClick");
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
 
+        ServiceLocator.Instance.GetService<AudioManager>().PlayMusic("Level");
+
         //asyncLoad.completed += LoadSceneAndSetupCamera;
     }
 
-/*    private void LoadSceneAndSetupCamera(AsyncOperation asyncLoad)
-    {
-        Debug.Log(ServiceLocator.Instance.GetService<CameraManager>().name);
+    /*    private void LoadSceneAndSetupCamera(AsyncOperation asyncLoad)
+        {
+            Debug.Log(ServiceLocator.Instance.GetService<CameraManager>().name);
 
-        // Now that the scene is loaded, set up the camera
-        ServiceLocator.Instance.GetService<CameraManager>().OffAllCams();
-        ServiceLocator.Instance.GetService<CameraManager>().virtualCamera[0].Priority = 0;
-    }*/
+            // Now that the scene is loaded, set up the camera
+            ServiceLocator.Instance.GetService<CameraManager>().OffAllCams();
+            ServiceLocator.Instance.GetService<CameraManager>().virtualCamera[0].Priority = 0;
+        }*/
 
     public void SettingsBttn()
     {

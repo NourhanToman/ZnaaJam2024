@@ -10,12 +10,16 @@ public class PlayerRepawning : MonoBehaviour
 
     [SerializeField] private GameEvents _gameEvents;
 
-    private void Awake() => ServiceLocator.Instance.RegisterService(this);
+    private ServiceLocator ServiceLocator => ServiceLocator.Instance;
+
+    private void Awake() => ServiceLocator.RegisterService(this);
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag(GameConstant.ObstacleTag))
         {
+            ServiceLocator.GetService<AudioManager>().PlaySFX("Hit");
+
             gameObject.transform.position = _playerSpawnPoint.position;
             StartCoroutine(DisableColliders());
             StartCoroutine(FlashColor());
