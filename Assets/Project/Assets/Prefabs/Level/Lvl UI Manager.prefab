@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3913166391978811702}
   - component: {fileID: 8393361907689833623}
-  - component: {fileID: 2832749314764266224}
   - component: {fileID: 7576978828718421718}
   - component: {fileID: 8966240415937609600}
   - component: {fileID: 7926249380885198526}
@@ -50,21 +49,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicSlider: {fileID: 0}
   SFXSlider: {fileID: 0}
---- !u!114 &2832749314764266224
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6227572721843545474}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d539e40ce2396c42a0e8663caa22e40, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SettingsPanel: {fileID: 0}
-  ControlsPanel: {fileID: 0}
-  AudioPanel: {fileID: 0}
 --- !u!114 &7576978828718421718
 MonoBehaviour:
   m_ObjectHideFlags: 0

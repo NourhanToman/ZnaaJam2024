@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class CameraManager : MonoBehaviour
 {
-    [SerializeField] private CinemachineVirtualCamera[] virtualCamera;
+    [SerializeField] internal CinemachineVirtualCamera[] virtualCamera;
     [SerializeField] private GameEvents LevelComplete;
 
     private readonly int on = 10;
@@ -32,9 +32,14 @@ public class CameraManager : MonoBehaviour
             nextCam = virtualCamera.Length;
     }
 
-    private void OffAllCams()
+    internal void OffAllCams()
     {
         for (int i = 0; i < virtualCamera.Length; i++)
             virtualCamera[i].Priority = off;
+    }
+
+    private void LateUpdate()
+    {
+        
     }
 }

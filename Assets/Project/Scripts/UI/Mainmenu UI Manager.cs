@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -13,8 +11,19 @@ public class MainmenuUIManager : MonoBehaviour
     public void StartGameBttn()
     {
         //AudioManager.instance.PlaySFX("ButtonClick");
-        SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex+1);
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
+
+        //asyncLoad.completed += LoadSceneAndSetupCamera;
     }
+
+/*    private void LoadSceneAndSetupCamera(AsyncOperation asyncLoad)
+    {
+        Debug.Log(ServiceLocator.Instance.GetService<CameraManager>().name);
+
+        // Now that the scene is loaded, set up the camera
+        ServiceLocator.Instance.GetService<CameraManager>().OffAllCams();
+        ServiceLocator.Instance.GetService<CameraManager>().virtualCamera[0].Priority = 0;
+    }*/
 
     public void SettingsBttn()
     {
