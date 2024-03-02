@@ -10,12 +10,17 @@ public class LevelBox : MonoBehaviour
     [SerializeField] private SpriteRenderer[] _obstacleSpriteRenderers;
 
     internal Collider2D Coolider2D { get; private set; }
+    private Rigidbody2D rb;
 
     private Coroutine currentRotation;
     internal float PlayerScale => _playerScale;
     internal float PlayerJumpForce => _playerJumpForce;
 
-    private void Awake() => Coolider2D = GetComponent<Collider2D>();
+    private void Awake()
+    {
+        Coolider2D = GetComponent<Collider2D>();
+        rb = GetComponent<Rigidbody2D>();
+    }
 
     private IEnumerator Rotate(Vector3 rotation)
     {
@@ -32,20 +37,41 @@ public class LevelBox : MonoBehaviour
         }
     }
 
+    //internal void RotateRight()
+    //{
+    //    if (currentRotation != null)
+    //        StopCoroutine(currentRotation);
+
+    //    currentRotation = StartCoroutine(Rotate(Vector3.forward * rotationAngle));
+    //}
+
+    //internal void RotateLeft()
+    //{
+    //    if (currentRotation != null)
+    //        StopCoroutine(currentRotation);
+
+    //    currentRotation = StartCoroutine(Rotate(Vector3.back * rotationAngle));
+    //}
+
+    private float targetRotation;
+
+    private void FixedUpdate()
+    {
+        if (Mathf.Abs(targetRotation - rb.rotation) > 0.01f)
+        {
+            float newRotation = Mathf.Lerp(rb.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+            rb.MoveRotation(newRotation);
+        }
+    }
+
     internal void RotateRight()
     {
-        if (currentRotation != null)
-            StopCoroutine(currentRotation);
-
-        currentRotation = StartCoroutine(Rotate(Vector3.forward * rotationAngle));
+        targetRotation = rb.rotation + rotationAngle;
     }
 
     internal void RotateLeft()
     {
-        if (currentRotation != null)
-            StopCoroutine(currentRotation);
-
-        currentRotation = StartCoroutine(Rotate(Vector3.back * rotationAngle));
+        targetRotation = rb.rotation - rotationAngle;
     }
 
     internal IEnumerator DisbaleObstcals()
