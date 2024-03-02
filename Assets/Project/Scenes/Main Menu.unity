@@ -522,6 +522,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2030572257361293545, guid: e2bf07ab7ec3e5a49aa0754463ce5207,
+        type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 3862100013349281795, guid: 782921c3de2b133498a15bafe636bc96,
+        type: 2}
+    - target: {fileID: 2158166443221033154, guid: e2bf07ab7ec3e5a49aa0754463ce5207,
+        type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: -691688036139006642, guid: 782921c3de2b133498a15bafe636bc96,
+        type: 2}
     - target: {fileID: 6071422407874497797, guid: e2bf07ab7ec3e5a49aa0754463ce5207,
         type: 3}
       propertyPath: m_Name
@@ -821,6 +833,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1798240200582876561, guid: 891a2106e4849ae4784939ce660b43b9,
+        type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 256
       objectReference: {fileID: 0}
     - target: {fileID: 2710908828383825327, guid: 891a2106e4849ae4784939ce660b43b9,
         type: 3}

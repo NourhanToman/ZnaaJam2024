@@ -35,5 +35,9 @@ public class PlayerHealth : MonoBehaviour
         }
         else if (_playerHealth <= 25)
             _spriteRenderer.sprite = _healthSprite[_healthSpriteIndex];
+        else if (_playerHealth <= 0)
+        {
+            ServiceLocator.Instance.GetService<AudioManager>().PlaySFX("Game Over");
+        }
     }
 }

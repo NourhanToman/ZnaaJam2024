@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,23 +5,13 @@ public class AudioPanelController : MonoBehaviour
 {
     public Slider musicSlider, SFXSlider;
 
-    public void ToggleMusic()
-    {
-        AudioManager.instance.ToggleMusic();
-    }
+    private ServiceLocator ServiceLocator => ServiceLocator.Instance;
 
-    public void ToggleSFX()
-    {
-        AudioManager.instance.ToggleSFX();
-    }
+    public void ToggleMusic() => ServiceLocator.GetService<AudioManager>().ToggleMusic();
 
-    public void MusicVolume()
-    {
-        AudioManager.instance.MusicVolume(musicSlider.value);
-    }
+    public void ToggleSFX() => ServiceLocator.GetService<AudioManager>().ToggleSFX();
 
-    public void SFXVolume()
-    {
-        AudioManager.instance.SFXVolume(SFXSlider.value);
-    }
+    public void MusicVolume() => ServiceLocator.GetService<AudioManager>().MusicVolume(musicSlider.value);
+
+    public void SFXVolume() => ServiceLocator.GetService<AudioManager>().SFXVolume(SFXSlider.value);
 }
