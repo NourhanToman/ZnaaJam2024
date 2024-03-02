@@ -1,4 +1,5 @@
 using Cinemachine;
+using System.Collections;
 using UnityEngine;
 
 public class CameraManager : MonoBehaviour
@@ -12,8 +13,8 @@ public class CameraManager : MonoBehaviour
 
     private void Start()
     {
-        OffAllCams();
-        virtualCamera[0].Priority = on;
+        //OffAllCams();
+        //virtualCamera[0].Priority = on;
     }
 
     private void OnEnable() => LevelComplete.GameAction += SwitchCam;
@@ -30,6 +31,17 @@ public class CameraManager : MonoBehaviour
         }
         else if (nextCam >= virtualCamera.Length)
             nextCam = virtualCamera.Length;
+    }
+
+    internal IEnumerator SwitchCams()
+    {
+        for (int i = virtualCamera.Length - 1; i >= 0; i--)
+        {
+            OffAllCams();
+            virtualCamera[i].Priority = on;
+        }
+
+        yield return null;
     }
 
     internal void OffAllCams()

@@ -14,6 +14,7 @@ public class MainmenuUIManager : MonoBehaviour
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
 
         ServiceLocator.Instance.GetService<AudioManager>().PlayMusic("Level");
+        StartCoroutine(ServiceLocator.Instance.GetService<CameraManager>().SwitchCams());
 
         //asyncLoad.completed += LoadSceneAndSetupCamera;
     }
