@@ -2,14 +2,20 @@ using UnityEngine;
 
 public class PlayerJumping : MonoBehaviour
 {
+    [Header("Jumping Settings")]
     [SerializeField] private float jumpForce = 5f;
+
     [SerializeField] private float fallGravity = 2.5f;
     [SerializeField] private float lowJumpGravity = 2f;
     [SerializeField] private int maxJumpCount = 2;
 
-    private Rigidbody2D rb;
+    [Header("Jumping State (FOR DEUBBING ONLY)")]
     [SerializeField] private bool isJumping = false;
+
     [SerializeField] private int jumpCount = 0;
+    private Rigidbody2D rb;
+
+    internal float SetJumpForce { set => jumpForce = value; }
 
     private void Awake()
     {
@@ -25,18 +31,27 @@ public class PlayerJumping : MonoBehaviour
             jumpCount++;
         }
 
-        if (rb.velocity.y < 0)
-            rb.gravityScale = fallGravity;
-        else if (rb.velocity.y > 0 && !isJumpRequested)
-            rb.gravityScale = lowJumpGravity;
-        else
-            rb.gravityScale = 1f;
-
         if (isJumping)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             isJumping = false;
         }
+    }
+
+    private void Update()
+    {
+        if (rb.velocity.y < 0)
+            rb.gravityScale = fallGravity;
+        else if (rb.velocity.y > 0)
+            rb.gravityScale = lowJumpGravity;
+        else
+            rb.gravityScale = 1f;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag(GameConstant.GroundTag))
+            jumpCount = 0;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

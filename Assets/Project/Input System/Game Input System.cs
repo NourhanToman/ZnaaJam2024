@@ -46,9 +46,18 @@ public partial class @GameInputSystem: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Box Rotate"",
+                    ""name"": ""Box Rotate Left"",
                     ""type"": ""Button"",
                     ""id"": ""c82c165e-584f-4685-b4c4-b1945441e651"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Box Rotate Right"",
+                    ""type"": ""Button"",
+                    ""id"": ""b731f75e-6614-4ed2-a8d0-f248f7506ff0"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -237,7 +246,7 @@ public partial class @GameInputSystem: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Gamepad"",
-                    ""action"": ""Box Rotate"",
+                    ""action"": ""Box Rotate Left"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -248,7 +257,7 @@ public partial class @GameInputSystem: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Box Rotate"",
+                    ""action"": ""Box Rotate Left"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -259,7 +268,7 @@ public partial class @GameInputSystem: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Touch"",
-                    ""action"": ""Box Rotate"",
+                    ""action"": ""Box Rotate Left"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -270,7 +279,7 @@ public partial class @GameInputSystem: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Joystick"",
-                    ""action"": ""Box Rotate"",
+                    ""action"": ""Box Rotate Left"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -281,7 +290,7 @@ public partial class @GameInputSystem: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""XR"",
-                    ""action"": ""Box Rotate"",
+                    ""action"": ""Box Rotate Left"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -293,6 +302,28 @@ public partial class @GameInputSystem: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""93186798-20a5-449a-be66-59718e8fe78a"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Box Rotate Right"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f001f979-9e3e-4450-a81d-765fc2e44e45"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Box Rotate Right"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -821,7 +852,8 @@ public partial class @GameInputSystem: IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
-        m_Player_BoxRotate = m_Player.FindAction("Box Rotate", throwIfNotFound: true);
+        m_Player_BoxRotateLeft = m_Player.FindAction("Box Rotate Left", throwIfNotFound: true);
+        m_Player_BoxRotateRight = m_Player.FindAction("Box Rotate Right", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
@@ -898,7 +930,8 @@ public partial class @GameInputSystem: IInputActionCollection2, IDisposable
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_Look;
-    private readonly InputAction m_Player_BoxRotate;
+    private readonly InputAction m_Player_BoxRotateLeft;
+    private readonly InputAction m_Player_BoxRotateRight;
     private readonly InputAction m_Player_Jump;
     public struct PlayerActions
     {
@@ -906,7 +939,8 @@ public partial class @GameInputSystem: IInputActionCollection2, IDisposable
         public PlayerActions(@GameInputSystem wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Player_Move;
         public InputAction @Look => m_Wrapper.m_Player_Look;
-        public InputAction @BoxRotate => m_Wrapper.m_Player_BoxRotate;
+        public InputAction @BoxRotateLeft => m_Wrapper.m_Player_BoxRotateLeft;
+        public InputAction @BoxRotateRight => m_Wrapper.m_Player_BoxRotateRight;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
@@ -923,9 +957,12 @@ public partial class @GameInputSystem: IInputActionCollection2, IDisposable
             @Look.started += instance.OnLook;
             @Look.performed += instance.OnLook;
             @Look.canceled += instance.OnLook;
-            @BoxRotate.started += instance.OnBoxRotate;
-            @BoxRotate.performed += instance.OnBoxRotate;
-            @BoxRotate.canceled += instance.OnBoxRotate;
+            @BoxRotateLeft.started += instance.OnBoxRotateLeft;
+            @BoxRotateLeft.performed += instance.OnBoxRotateLeft;
+            @BoxRotateLeft.canceled += instance.OnBoxRotateLeft;
+            @BoxRotateRight.started += instance.OnBoxRotateRight;
+            @BoxRotateRight.performed += instance.OnBoxRotateRight;
+            @BoxRotateRight.canceled += instance.OnBoxRotateRight;
             @Jump.started += instance.OnJump;
             @Jump.performed += instance.OnJump;
             @Jump.canceled += instance.OnJump;
@@ -939,9 +976,12 @@ public partial class @GameInputSystem: IInputActionCollection2, IDisposable
             @Look.started -= instance.OnLook;
             @Look.performed -= instance.OnLook;
             @Look.canceled -= instance.OnLook;
-            @BoxRotate.started -= instance.OnBoxRotate;
-            @BoxRotate.performed -= instance.OnBoxRotate;
-            @BoxRotate.canceled -= instance.OnBoxRotate;
+            @BoxRotateLeft.started -= instance.OnBoxRotateLeft;
+            @BoxRotateLeft.performed -= instance.OnBoxRotateLeft;
+            @BoxRotateLeft.canceled -= instance.OnBoxRotateLeft;
+            @BoxRotateRight.started -= instance.OnBoxRotateRight;
+            @BoxRotateRight.performed -= instance.OnBoxRotateRight;
+            @BoxRotateRight.canceled -= instance.OnBoxRotateRight;
             @Jump.started -= instance.OnJump;
             @Jump.performed -= instance.OnJump;
             @Jump.canceled -= instance.OnJump;
@@ -1084,7 +1124,8 @@ public partial class @GameInputSystem: IInputActionCollection2, IDisposable
     {
         void OnMove(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
-        void OnBoxRotate(InputAction.CallbackContext context);
+        void OnBoxRotateLeft(InputAction.CallbackContext context);
+        void OnBoxRotateRight(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
     }
     public interface IUIActions
