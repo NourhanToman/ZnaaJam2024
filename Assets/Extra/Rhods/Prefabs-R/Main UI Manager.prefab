@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 2165234704313740210}
   - component: {fileID: 471196015731229399}
   - component: {fileID: 6658409391117547093}
-  - component: {fileID: 7548375995781348300}
   m_Layer: 0
   m_Name: Main UI Manager
   m_TagString: Untagged
@@ -62,18 +61,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicSlider: {fileID: 0}
   SFXSlider: {fileID: 0}
---- !u!114 &7548375995781348300
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5431913564538727557}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d539e40ce2396c42a0e8663caa22e40, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SettingsPanel: {fileID: 0}
-  ControlsPanel: {fileID: 0}
-  AudioPanel: {fileID: 0}
