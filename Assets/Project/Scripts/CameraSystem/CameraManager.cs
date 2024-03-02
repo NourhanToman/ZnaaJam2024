@@ -11,11 +11,7 @@ public class CameraManager : MonoBehaviour
     private readonly int off = 0;
     private int nextCam = 0;
 
-    private void Start()
-    {
-        //OffAllCams();
-        //virtualCamera[0].Priority = on;
-    }
+    private void Awake() => ServiceLocator.Instance.RegisterService(this);
 
     private void OnEnable() => LevelComplete.GameAction += SwitchCam;
 
@@ -33,15 +29,16 @@ public class CameraManager : MonoBehaviour
             nextCam = virtualCamera.Length;
     }
 
-    internal IEnumerator SwitchCams()
+    internal void StartCoroutineForCamera() => StartCoroutine(StartCameraZoomIn());
+
+    private IEnumerator StartCameraZoomIn()
     {
         for (int i = virtualCamera.Length - 1; i >= 0; i--)
         {
             OffAllCams();
             virtualCamera[i].Priority = on;
+            yield return null;
         }
-
-        yield return null;
     }
 
     internal void OffAllCams()

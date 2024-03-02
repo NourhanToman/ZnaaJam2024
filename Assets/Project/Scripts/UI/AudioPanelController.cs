@@ -5,13 +5,13 @@ public class AudioPanelController : MonoBehaviour
 {
     public Slider musicSlider, SFXSlider;
 
-    private ServiceLocator _serviceLocator => ServiceLocator.Instance;
+    private ServiceLocator ServiceLocator => ServiceLocator.Instance;
 
-    public void ToggleMusic() => _serviceLocator.GetService<AudioManager>().ToggleMusic();
+    public void ToggleMusic() => ServiceLocator.GetService<AudioManager>().ToggleMusic();
 
-    public void ToggleSFX() => _serviceLocator.GetService<AudioManager>().ToggleSFX();
+    public void ToggleSFX() => ServiceLocator.GetService<AudioManager>().ToggleSFX();
 
-    public void MusicVolume() => _serviceLocator.GetService<AudioManager>().MusicVolume(musicSlider.value);
+    public void MusicVolume() => ServiceLocator.GetService<AudioManager>().MusicVolume(musicSlider.value);
 
-    public void SFXVolume() => _serviceLocator.GetService<AudioManager>().SFXVolume(SFXSlider.value);
+    public void SFXVolume() => ServiceLocator.GetService<AudioManager>().SFXVolume(SFXSlider.value);
 }
