@@ -5,7 +5,9 @@ using UnityEngine;
 public class CameraManager : MonoBehaviour
 {
     [SerializeField] internal CinemachineVirtualCamera[] virtualCamera;
+    [SerializeField] private CinemachineVirtualCamera WinCam;
     [SerializeField] private GameEvents LevelComplete;
+    [SerializeField] private GameEvents WinEvent;
 
     private readonly int on = 10;
     private readonly int off = 0;
@@ -13,9 +15,17 @@ public class CameraManager : MonoBehaviour
 
     private void Awake() => ServiceLocator.Instance.RegisterService(this);
 
-    private void OnEnable() => LevelComplete.GameAction += SwitchCam;
+    private void OnEnable()
+    {
+        LevelComplete.GameAction += SwitchCam;
+        WinEvent.GameAction += SwitchToWinCam;
+    }
 
-    private void OnDisable() => LevelComplete.GameAction -= SwitchCam;
+    private void OnDisable()
+    {
+        LevelComplete.GameAction -= SwitchCam;
+        WinEvent.GameAction -= SwitchToWinCam;
+    }
 
     private void SwitchCam()
     {
@@ -45,5 +55,9 @@ public class CameraManager : MonoBehaviour
     {
         for (int i = 0; i < virtualCamera.Length; i++)
             virtualCamera[i].Priority = off;
+    }
+    void SwitchToWinCam()
+    {
+        WinCam.Priority = 500;
     }
 }
