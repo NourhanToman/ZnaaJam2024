@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class LastLevel : MonoBehaviour
@@ -10,7 +8,10 @@ public class LastLevel : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (_IsLevelComplete && collision.CompareTag(GameConstant.PlayerTag))
+        if (!_IsLevelComplete && collision.CompareTag(GameConstant.PlayerTag))
+        {
+            Debug.Log("Level Complete");
             _LastLevel.GameAction?.Invoke();
+        }
     }
 }

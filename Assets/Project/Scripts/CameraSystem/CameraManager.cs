@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CameraManager : MonoBehaviour
 {
+    [SerializeField] private CinemachineBrain brain;
     [SerializeField] internal CinemachineVirtualCamera[] virtualCamera;
     [SerializeField] private CinemachineVirtualCamera WinCam;
     [SerializeField] private GameEvents LevelComplete;
@@ -56,8 +57,11 @@ public class CameraManager : MonoBehaviour
         for (int i = 0; i < virtualCamera.Length; i++)
             virtualCamera[i].Priority = off;
     }
-    void SwitchToWinCam()
+
+    private void SwitchToWinCam()
     {
-        WinCam.Priority = 500;
+        OffAllCams();
+        WinCam.Priority = on;
+        brain.m_DefaultBlend = new CinemachineBlendDefinition(CinemachineBlendDefinition.Style.EaseOut, 0.5f);
     }
 }
