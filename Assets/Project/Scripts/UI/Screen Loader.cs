@@ -47,7 +47,7 @@ public class ScreenLoader : MonoBehaviour
             }
             yield return null;
         }
-
+        loadingScreen.SetActive(false);
         asyncLoad.completed += LoadSceneAndSetupCamera;
     }
 
