@@ -21,6 +21,9 @@ public class PlayerLevelComplete : MonoBehaviour
     private ServiceLocator _serviceLocator;
     private CollectablesManager _collectablesManager;
 
+    [Header("Event")]
+    [SerializeField] private GameEvents _gameEvents;
+
     private void Awake() => _serviceLocator = ServiceLocator.Instance;
 
     private void Start() => _collectablesManager = _serviceLocator.GetService<CollectablesManager>();
@@ -103,6 +106,7 @@ public class PlayerLevelComplete : MonoBehaviour
         {
             // 1 star
             Debug.Log("1 star");
+            
         }
         else if (count == 2)
         {
@@ -119,5 +123,7 @@ public class PlayerLevelComplete : MonoBehaviour
             //lose
             Debug.Log("lose");
         }
+
+        _gameEvents.GameAction?.Invoke();
     }
 }
