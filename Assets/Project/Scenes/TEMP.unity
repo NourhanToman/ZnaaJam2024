@@ -511,7 +511,7 @@ PolygonCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -566,6 +566,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Event: {fileID: 11400000, guid: 88146430ef16a02499926656cbdef181, type: 2}
+  fadeOutDuration: 1
 --- !u!212 &147283444
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -693,7 +694,7 @@ PolygonCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -772,6 +773,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Event: {fileID: 11400000, guid: 506470de1f0d5624a83b9737cfe5c80a, type: 2}
+  fadeOutDuration: 1
 --- !u!212 &224756348
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1873,7 +1875,7 @@ PolygonCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -1924,6 +1926,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Event: {fileID: 11400000, guid: b08aa8b719514304ea3a01bc083a5b33, type: 2}
+  fadeOutDuration: 1
 --- !u!212 &483921888
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4226,7 +4229,7 @@ Transform:
   m_GameObject: {fileID: 1304225211}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -1, z: -118.1}
+  m_LocalPosition: {x: 0, y: -1, z: -16.49}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
