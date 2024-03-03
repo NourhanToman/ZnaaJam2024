@@ -86,6 +86,10 @@ public class PlayerLevelComplete : MonoBehaviour
 
         CheckPlayerWinCondition();
 
+        yield return new WaitForSeconds(5f);
+
+        CheckCount();
+
         _playerCollider[0].gameObject.SetActive(false);
     }
 
@@ -107,18 +111,6 @@ public class PlayerLevelComplete : MonoBehaviour
             _animator[i].gameObject.SetActive(true);
             _animator[i].SetBool(GameConstant.Win, true);
         }
-
-        CheckCount();
-
-        // StartCoroutine(WaitForAnimation());
-    }
-
-    private IEnumerator WaitForAnimation()
-    {
-        yield return new WaitForSeconds(5f);
-
-        // Call the CheckCount function after the animation has finished
-        CheckCount();
     }
 
     private void CheckCount()

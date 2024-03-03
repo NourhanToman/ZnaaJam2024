@@ -15,11 +15,18 @@ public class MainmenuUIManager : MonoBehaviour
         //AudioManager.instance.PlaySFX("ButtonClick");
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
 
+        Time.timeScale = 1;
+
         ServiceLocator.GetService<AudioManager>().PlayMusic("Level");
         asyncLoad.completed += LoadSceneAndSetupCamera;
     }
 
-    private void LoadSceneAndSetupCamera(AsyncOperation asyncLoad) => ServiceLocator.GetService<CameraManager>().StartCoroutineForCamera();
+    private void LoadSceneAndSetupCamera(AsyncOperation asyncLoad)
+    {
+        ServiceLocator.GetService<CameraManager>().StartCoroutineForCamera();
+
+        Time.timeScale = 1;
+    }
 
     public void SettingsBttn()
     {
