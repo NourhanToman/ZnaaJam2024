@@ -19,7 +19,7 @@ public class PlayerLevelComplete : MonoBehaviour
     [SerializeField] private Animator[] _animator;
 
     private ServiceLocator _serviceLocator;
-    private CollectablesManager _collectablesManager;
+    private CollectableManager _collectablesManager;
 
     [Header("Event")]
     [SerializeField] private GameEvents _gameEvents;
@@ -28,7 +28,7 @@ public class PlayerLevelComplete : MonoBehaviour
 
     private void Awake() => _serviceLocator = ServiceLocator.Instance;
 
-    private void Start() => _collectablesManager = _serviceLocator.GetService<CollectablesManager>();
+    private void Start() => _collectablesManager = _serviceLocator.GetService<CollectableManager>();
 
     private void OnCollisionEnter2D(Collision2D collision)
     {

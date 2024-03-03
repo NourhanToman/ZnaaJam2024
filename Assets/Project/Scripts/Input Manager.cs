@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
-    private GameInputSystem _playerInput;
+    internal GameInputSystem PlayerInput { get; private set; }
     private GameInputSystem.PlayerActions _playerActions;
 
     private ServiceLocator _serviceLocator;
@@ -14,8 +14,8 @@ public class InputManager : MonoBehaviour
         _serviceLocator = ServiceLocator.Instance;
         _serviceLocator.RegisterService(this);
 
-        _playerInput = new GameInputSystem();
-        _playerActions = _playerInput.Player;
+        PlayerInput = new GameInputSystem();
+        _playerActions = PlayerInput.Player;
     }
 
     private void Start()
@@ -29,7 +29,7 @@ public class InputManager : MonoBehaviour
         _playerActions.Jump.performed += context => _playerJumping.HandleJump(context.ReadValue<float>() > 0);
     }
 
-    private void OnEnable() => _playerInput.Enable();
+    private void OnEnable() => PlayerInput.Enable();
 
-    private void OnDisable() => _playerInput.Disable();
+    private void OnDisable() => PlayerInput.Disable();
 }

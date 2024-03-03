@@ -5,13 +5,23 @@ public class GameOverPanelUI : MonoBehaviour
 {
     [SerializeField] private Canvas loseCanvas;
 
-    private void Awake() => ServiceLocator.Instance.RegisterService(this);
+    private ServiceLocator ServiceLocator => ServiceLocator.Instance;
 
-    public void GameOverCanvas() => loseCanvas.gameObject.SetActive(true);
+    private AudioManager audioManager;
+
+    private void Awake() => ServiceLocator.RegisterService(this);
+
+    private void Start() => audioManager = ServiceLocator.GetService<AudioManager>();
+
+    public void GameOverCanvas()
+    {
+        loseCanvas.gameObject.SetActive(true);
+        audioManager.PlayMusic("Lose");
+    }
 
     public void MainMenuBttn()
     {
-        ServiceLocator.Instance.GetService<AudioManager>().PlaySFX("Button");
+        audioManager.PlaySFX("Button");
         SceneManager.LoadSceneAsync(0);
     }
 }

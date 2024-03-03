@@ -10,14 +10,21 @@ public class MainmenuUIManager : MonoBehaviour
 
     private ServiceLocator ServiceLocator => ServiceLocator.Instance;
 
+    private AudioManager AudioManager;
+
+    private void Start()
+    {
+        AudioManager = ServiceLocator.GetService<AudioManager>();
+    }
+
     public void StartGameBttn()
     {
-        //AudioManager.instance.PlaySFX("ButtonClick");
+        AudioManager.PlaySFX("Button");
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
 
         Time.timeScale = 1;
 
-        ServiceLocator.GetService<AudioManager>().PlayMusic("Level");
+        AudioManager.PlayMusic("Level");
         asyncLoad.completed += LoadSceneAndSetupCamera;
     }
 
@@ -32,11 +39,15 @@ public class MainmenuUIManager : MonoBehaviour
     {
         //MainPanel.gameObject.SetActive(false);
         SettingsPanel.gameObject.SetActive(true);
+
+        AudioManager.PlaySFX("Button");
     }
 
     public void ExitBttn()
     {
         UnityEditor.EditorApplication.isPlaying = false;
+
+        AudioManager.PlaySFX("Button");
         //in built ver
         //Application.Quit();
     }
@@ -48,6 +59,8 @@ public class MainmenuUIManager : MonoBehaviour
         //AudioManager.instance.PlaySFX("ButtonClick");
         MainPanel.gameObject.SetActive(true);
         SettingsPanel.gameObject.SetActive(false);
+
+        AudioManager.PlaySFX("Button");
         //AudioPanel.gameObject.SetActive(false);
         //ControlsPanel.gameObject.SetActive(false);
     }

@@ -2,23 +2,12 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CollectablesManager : MonoBehaviour
+public class Collectabe : MonoBehaviour
 {
     [SerializeField] private GameEvents Collected;
     [SerializeField] private Sprite Opaque;
 
     private Image image;
-    private ServiceLocator _serviceLocator;
-
-    internal int _dropletWaterCounter = 0;
-    internal int _fertilizerCounter = 0;
-    internal int _sunlightCounter = 0;
-
-    private void Awake()
-    {
-        _serviceLocator = ServiceLocator.Instance;
-        _serviceLocator.RegisterService(this);
-    }
 
     private void Start()
     {
@@ -33,7 +22,6 @@ public class CollectablesManager : MonoBehaviour
 
     private void OnDisable() => Collected.GameAction -= ChangeSprite;
 
-    //private void ChangeSprite() => gameObject.GetComponent<Image>().sprite = Opaque;
     private void ChangeSprite() => StartCoroutine(FadeIn());
 
     private IEnumerator FadeIn()

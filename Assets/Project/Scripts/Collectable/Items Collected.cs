@@ -7,7 +7,9 @@ public class ItemsCollected : MonoBehaviour
     [SerializeField] private float fadeOutDuration = 1f;
 
     private SpriteRenderer spriteRenderer;
+
     private ServiceLocator _serviceLocator;
+    private CollectableManager _CollectableManager;
 
     private bool isCollected = false;
 
@@ -16,6 +18,8 @@ public class ItemsCollected : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         _serviceLocator = ServiceLocator.Instance;
     }
+
+    private void Start() => _CollectableManager = _serviceLocator.GetService<CollectableManager>();
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -47,10 +51,10 @@ public class ItemsCollected : MonoBehaviour
     private void CheckItemTag()
     {
         if (gameObject.CompareTag(GameConstant.DropletWaterTag))
-            _serviceLocator.GetService<CollectablesManager>()._dropletWaterCounter++;
+            _CollectableManager._dropletWaterCounter++;
         else if (gameObject.CompareTag(GameConstant.FertilizerTag))
-            _serviceLocator.GetService<CollectablesManager>()._fertilizerCounter++;
+            _CollectableManager._fertilizerCounter++;
         else if (gameObject.CompareTag(GameConstant.SunlightTag))
-            _serviceLocator.GetService<CollectablesManager>()._sunlightCounter++;
+            _CollectableManager._sunlightCounter++;
     }
 }

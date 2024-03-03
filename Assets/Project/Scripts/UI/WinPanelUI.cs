@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class WinPanelUI : MonoBehaviour
@@ -8,8 +7,9 @@ public class WinPanelUI : MonoBehaviour
     [SerializeField] private Image[] starImages;
 
     private int starCount;
+    private ServiceLocator ServiceLocator => ServiceLocator.Instance;
 
-    private void Awake() => ServiceLocator.Instance.RegisterService(this);
+    private void Awake() => ServiceLocator.RegisterService(this);
 
     private void Start() => starCount = 0;
 
@@ -17,11 +17,14 @@ public class WinPanelUI : MonoBehaviour
     {
         winCanvas.gameObject.SetActive(true);
         StarRate(count);
+
+        ServiceLocator.GetService<AudioManager>().PlayMusic("Win");
     }
 
     public void StarRate(int count)
     {
         starCount = count;
+
         for (int i = 0; i < starCount; i++)
         {
             starImages[i].color =
@@ -31,10 +34,9 @@ public class WinPanelUI : MonoBehaviour
 
     public void MainMenuBttn()
     {
-        ServiceLocator.Instance.GetService<AudioManager>().PlaySFX("Button");
+        winCanvas.gameObject.SetActive(false);
 
-        ServiceLocator.Instance.GetService<Cutscene>().StartCutscene();
-
-        SceneManager.LoadSceneAsync(0);
+        ServiceLocator.GetService<AudioManager>().PlaySFX("Button");
+        ServiceLocator.GetService<Cutscene>().StartCutscene();
     }
 }

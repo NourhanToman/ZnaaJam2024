@@ -16,7 +16,9 @@ public class Cutscene : MonoBehaviour
 
     internal bool IsCutscenePlaying { get; private set; }
 
-    private void Awake() => ServiceLocator.Instance.RegisterService(this);
+    private ServiceLocator ServiceLocator => ServiceLocator.Instance;
+
+    private void Awake() => ServiceLocator.RegisterService(this);
 
     private void Start()
     {
@@ -36,7 +38,7 @@ public class Cutscene : MonoBehaviour
 
         Time.timeScale = 0;
 
-        //_audioManager.PlaySFX(audioClip);
+        ServiceLocator.GetService<AudioManager>().PlayMusic("End");
 
         StartCoroutine(PlayCutscene());
     }
@@ -47,13 +49,13 @@ public class Cutscene : MonoBehaviour
         {
             cutsceneImage.sprite = frame;
             yield return FadeIn();
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSecondsRealtime(2);
             yield return FadeOut();
         }
 
         cutsceneParent.SetActive(false);
-        //_inputManager._playerInput.Enable();
-        //cutsceneParent.SetActive(false);
+        ServiceLocator.GetService<InputManager>().PlayerInput.Enable();
+        cutsceneParent.SetActive(false);
 
         if (isFinalCutscene)
             ReturnToMainMenu();
@@ -66,7 +68,7 @@ public class Cutscene : MonoBehaviour
         float t = 0;
         while (t < transitionTime)
         {
-            t += Time.deltaTime;
+            t += Time.unscaledDeltaTime;
             Color color = cutsceneImage.color;
             color.a = Mathf.Lerp(0, 1, t / transitionTime);
             cutsceneImage.color = color;
@@ -79,7 +81,7 @@ public class Cutscene : MonoBehaviour
         float t = 0;
         while (t < transitionTime)
         {
-            t += Time.deltaTime;
+            t += Time.unscaledDeltaTime;
             Color color = cutsceneImage.color;
             color.a = Mathf.Lerp(1, 0, t / transitionTime);
             cutsceneImage.color = color;
