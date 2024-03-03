@@ -32,6 +32,8 @@ public class PlayerLevelComplete : MonoBehaviour
     {
         if (collision.gameObject.CompareTag(GameConstant.LevelFinishTag))
         {
+            _gameEvents.GameAction?.Invoke();
+
             foreach (var collider in _playerCollider)
                 collider.enabled = false;
 
@@ -125,7 +127,5 @@ public class PlayerLevelComplete : MonoBehaviour
             //lose
             Debug.Log("lose");
         }
-
-        _gameEvents.GameAction?.Invoke();
     }
 }

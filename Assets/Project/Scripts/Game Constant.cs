@@ -8,6 +8,7 @@ public static class GameConstant
 
     public const string LevelCompleteTag = "Level Complete";
     public const string LevelFinishTag = "Level Finish";
+    public const string LastLevelTag = "Last Level";
 
     public const string DropletWaterTag = "Droplet Water";
     public const string FertilizerTag = "Fertilizer";
