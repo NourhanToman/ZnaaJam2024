@@ -21,7 +21,7 @@ public class PlayerLevelComplete : MonoBehaviour
     private ServiceLocator _serviceLocator;
     private CollectableManager _collectablesManager;
 
-    [Header("Event")]
+    [Header("_event")]
     [SerializeField] private GameEvents _gameEvents;
 
     private int count = 0;
@@ -116,28 +116,12 @@ public class PlayerLevelComplete : MonoBehaviour
     private void CheckCount()
     {
         if (count == 1)
-        {
-            // 1 star
-            Debug.Log("1 star");
-            ServiceLocator.Instance.GetService<WinPanelUI>().WinCanvas(1);
-        }
+            _serviceLocator.GetService<WinPanelUI>().WinCanvas(1);
         else if (count == 2)
-        {
-            // 2 stars
-            Debug.Log("2 stars");
-            ServiceLocator.Instance.GetService<WinPanelUI>().WinCanvas(2);
-        }
+            _serviceLocator.GetService<WinPanelUI>().WinCanvas(2);
         else if (count == 3)
-        {
-            // 3 stars
-            Debug.Log("3 stars");
-            ServiceLocator.Instance.GetService<WinPanelUI>().WinCanvas(3);
-        }
+            _serviceLocator.GetService<WinPanelUI>().WinCanvas(3);
         else
-        {
-            //lose
-            Debug.Log("lose");
-            ServiceLocator.Instance.GetService<GameOverPanelUI>().GameOverCanvas();
-        }
+            _serviceLocator.GetService<GameOverPanelUI>().GameOverCanvas();
     }
 }

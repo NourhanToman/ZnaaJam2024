@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class ItemsCollected : MonoBehaviour
 {
-    [SerializeField] private GameEvents Event;
+    [SerializeField] private GameEvents _event;
     [SerializeField] private float fadeOutDuration = 1f;
 
     private SpriteRenderer spriteRenderer;
@@ -26,7 +26,7 @@ public class ItemsCollected : MonoBehaviour
         if (!isCollected && collision.gameObject.CompareTag(GameConstant.PlayerTag))
         {
             isCollected = true;
-            Event.GameAction?.Invoke();
+            _event.GameAction?.Invoke();
             CheckItemTag();
             StartCoroutine(FadeOutAndDestroy());
         }

@@ -18,22 +18,23 @@ public class Collectabe : MonoBehaviour
         image.color = color;
     }
 
-    private void OnEnable() => Collected.GameAction += ChangeSprite;
+    private void OnEnable() => Collected.GameAction += IncreaseTransparency;
 
-    private void OnDisable() => Collected.GameAction -= ChangeSprite;
+    private void OnDisable() => Collected.GameAction -= IncreaseTransparency;
 
-    private void ChangeSprite() => StartCoroutine(FadeIn());
+    private void IncreaseTransparency() => StartCoroutine(IncreaseTransparencyCoroutine());
 
-    private IEnumerator FadeIn()
+    private IEnumerator IncreaseTransparencyCoroutine()
     {
         Color color = image.color;
-        for (float t = 0.01f; t < 1; t += Time.deltaTime)
+        float targetAlpha = color.a + 0.33f;
+        if (targetAlpha > 1) targetAlpha = 1;
+
+        while (color.a < targetAlpha)
         {
-            color.a = t;
+            color.a += Time.deltaTime * 0.33f;
             image.color = color;
             yield return null;
         }
-        color.a = 1;
-        image.color = color;
     }
 }

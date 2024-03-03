@@ -28,7 +28,9 @@ public class ServiceLocator
     {
         services[typeof(T)] = service;
 
-        if (service is UnityEngine.Object unityObject)
-            UnityEngine.Object.DontDestroyOnLoad(unityObject);
+        if (service is UnityEngine.Component component && component.transform.root == component.transform)
+            UnityEngine.Object.DontDestroyOnLoad(component.gameObject);
+        else if (service is UnityEngine.GameObject gameObject && gameObject.transform.root == gameObject.transform)
+            UnityEngine.Object.DontDestroyOnLoad(gameObject);
     }
 }
