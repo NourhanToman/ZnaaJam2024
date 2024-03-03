@@ -15,6 +15,7 @@ public class LevelBox : MonoBehaviour
 
     internal Collider2D Coolider2D { get; private set; }
     private Rigidbody2D rb;
+    private float targetRotation;
 
     internal float PlayerScale => _playerScale;
     internal float PlayerJumpForce => _playerJumpForce;
@@ -23,9 +24,9 @@ public class LevelBox : MonoBehaviour
     {
         Coolider2D = GetComponent<Collider2D>();
         rb = GetComponent<Rigidbody2D>();
-    }
 
-    private float targetRotation;
+        SetRandomInitialRotation();
+    }
 
     private void FixedUpdate()
     {
@@ -44,6 +45,38 @@ public class LevelBox : MonoBehaviour
     {
         yield return StartCoroutine(FadeOutObstacles(1f));
         SetObstacleToFalse();
+    }
+
+    private int lastDirection = -1;
+
+    private void SetRandomInitialRotation()
+    {
+        int randomDirection;
+        do
+        {
+            randomDirection = UnityEngine.Random.Range(0, 4);
+        } while (randomDirection == lastDirection);
+
+        lastDirection = randomDirection;
+
+        switch (randomDirection)
+        {
+            case 0: // Up
+                targetRotation = 0;
+                break;
+
+            case 1: // Down
+                targetRotation = 180;
+                break;
+
+            case 2: // Left
+                targetRotation = 270;
+                break;
+
+            case 3: // Right
+                targetRotation = 90;
+                break;
+        }
     }
 
     private IEnumerator FadeOutObstacles(float duration)
