@@ -36,9 +36,9 @@ public class MainmenuUIManager : MonoBehaviour
 
     public void ExitBttn()
     {
-        UnityEditor.EditorApplication.isPlaying = false;
+        //UnityEditor.EditorApplication.isPlaying = false;
         //in built ver
-        //Application.Quit();
+        Application.Quit();
     }
 
     //////////////

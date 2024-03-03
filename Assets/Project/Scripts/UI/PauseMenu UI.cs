@@ -47,9 +47,9 @@ public class PauseMenuUI : MonoBehaviour
 
     public void ExitBttn()
     {
-        UnityEditor.EditorApplication.isPlaying = false;
+        
         //in built ver
-        //Application.Quit();
+        Application.Quit();
     }
 
     //////////////
