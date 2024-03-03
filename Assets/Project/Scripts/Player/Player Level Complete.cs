@@ -108,7 +108,9 @@ public class PlayerLevelComplete : MonoBehaviour
             _animator[i].SetBool(GameConstant.Win, true);
         }
 
-        StartCoroutine(WaitForAnimation());
+        CheckCount();
+
+        // StartCoroutine(WaitForAnimation());
     }
 
     private IEnumerator WaitForAnimation()
