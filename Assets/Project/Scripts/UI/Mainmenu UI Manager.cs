@@ -48,8 +48,9 @@ public class MainmenuUIManager : MonoBehaviour
         UnityEditor.EditorApplication.isPlaying = false;
 
         AudioManager.PlaySFX("Button");
+        //UnityEditor.EditorApplication.isPlaying = false;
         //in built ver
-        //Application.Quit();
+        Application.Quit();
     }
 
     //////////////
