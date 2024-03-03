@@ -27,6 +27,26 @@ public class MainmenuUIManager : MonoBehaviour
         AudioManager.PlayMusic("Level");
         asyncLoad.completed += LoadSceneAndSetupCamera;
     }
+    public void EasyGameBttn()
+    {
+        AudioManager.PlaySFX("Button");
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
+
+        Time.timeScale = 1;
+
+        AudioManager.PlayMusic("Level");
+        asyncLoad.completed += LoadSceneAndSetupCamera;
+    }
+    public void HardGameBttn()
+    {
+        AudioManager.PlaySFX("Button");
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 2);
+
+        Time.timeScale = 1;
+
+        AudioManager.PlayMusic("Level");
+        asyncLoad.completed += LoadSceneAndSetupCamera;
+    }
 
     private void LoadSceneAndSetupCamera(AsyncOperation asyncLoad)
     {
@@ -45,7 +65,7 @@ public class MainmenuUIManager : MonoBehaviour
 
     public void ExitBttn()
     {
-        UnityEditor.EditorApplication.isPlaying = false;
+        // UnityEditor.EditorApplication.isPlaying = false;
 
         AudioManager.PlaySFX("Button");
         //UnityEditor.EditorApplication.isPlaying = false;
