@@ -8,6 +8,7 @@ public class Collectabe : MonoBehaviour
     [SerializeField] private Sprite Opaque;
 
     private Image image;
+    private Coroutine transparencyCoroutine;
 
     private void Start()
     {
@@ -22,16 +23,22 @@ public class Collectabe : MonoBehaviour
 
     private void OnDisable() => Collected.GameAction -= IncreaseTransparency;
 
-    private void IncreaseTransparency() => StartCoroutine(IncreaseTransparencyCoroutine());
+    private void IncreaseTransparency()
+    {
+        if (transparencyCoroutine != null)
+            StopCoroutine(transparencyCoroutine);
+
+        transparencyCoroutine = StartCoroutine(IncreaseTransparencyCoroutine());
+    }
 
     private IEnumerator IncreaseTransparencyCoroutine()
     {
-        Color color = image.color;
-        float targetAlpha = color.a + 0.33f;
+        float targetAlpha = image.color.a + 0.33f;
         if (targetAlpha > 1) targetAlpha = 1;
 
-        while (color.a < targetAlpha)
+        while (image.color.a < targetAlpha)
         {
+            Color color = image.color;
             color.a += Time.deltaTime * 0.33f;
             image.color = color;
             yield return null;
