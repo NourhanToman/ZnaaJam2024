@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731703, g: 0.13414727, b: 0.12107852, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -182,7 +182,10 @@ MonoBehaviour:
   cutsceneParent: {fileID: 2030591067}
   cutsceneBackground: {fileID: 2030591066}
   cutsceneImage: {fileID: 2030591065}
-  cutsceneFrames: []
+  cutsceneFrames:
+  - {fileID: 21300000, guid: 9cb1841a523b3c24fb8be70133964cbb, type: 3}
+  - {fileID: 21300000, guid: b53895b0449acf449bb78c4d27a28246, type: 3}
+  - {fileID: 21300000, guid: 7b69c0f158cf91b4bb3dbda2ba5b01fd, type: 3}
   transitionTime: 2.5
   audioClip: {fileID: 0}
   isFinalCutscene: 1
@@ -7464,16 +7467,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 450152973}
-    - target: {fileID: 69541048780854022, guid: a87c33ccd79661c41b07c2045c389ac7,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: MainMenuBttn
-      objectReference: {fileID: 0}
-    - target: {fileID: 69541048780854022, guid: a87c33ccd79661c41b07c2045c389ac7,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: WinPanelUI, Assembly-CSharp
-      objectReference: {fileID: 0}
     - target: {fileID: 1300324782004053788, guid: a87c33ccd79661c41b07c2045c389ac7,
         type: 3}
       propertyPath: m_Pivot.x
@@ -7537,27 +7530,27 @@ PrefabInstance:
     - target: {fileID: 1300324782004053788, guid: a87c33ccd79661c41b07c2045c389ac7,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1300324782004053788, guid: a87c33ccd79661c41b07c2045c389ac7,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1300324782004053788, guid: a87c33ccd79661c41b07c2045c389ac7,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1300324782004053788, guid: a87c33ccd79661c41b07c2045c389ac7,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -0.20904541
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1300324782004053788, guid: a87c33ccd79661c41b07c2045c389ac7,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -2.543579
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1300324782004053788, guid: a87c33ccd79661c41b07c2045c389ac7,
         type: 3}
@@ -7689,27 +7682,27 @@ PrefabInstance:
     - target: {fileID: 4268074733682869727, guid: ef7f886199501aa45b52fc47e36f24ba,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4268074733682869727, guid: ef7f886199501aa45b52fc47e36f24ba,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4268074733682869727, guid: ef7f886199501aa45b52fc47e36f24ba,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4268074733682869727, guid: ef7f886199501aa45b52fc47e36f24ba,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -0.20904541
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4268074733682869727, guid: ef7f886199501aa45b52fc47e36f24ba,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -2.543579
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4268074733682869727, guid: ef7f886199501aa45b52fc47e36f24ba,
         type: 3}
@@ -7731,20 +7724,15 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 450152972}
-    - target: {fileID: 4379673534616751377, guid: ef7f886199501aa45b52fc47e36f24ba,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: MainMenuBttn
-      objectReference: {fileID: 0}
-    - target: {fileID: 4379673534616751377, guid: ef7f886199501aa45b52fc47e36f24ba,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: GameOverPanelUI, Assembly-CSharp
-      objectReference: {fileID: 0}
     - target: {fileID: 6896871880633903074, guid: ef7f886199501aa45b52fc47e36f24ba,
         type: 3}
       propertyPath: m_Name
       value: GameOver Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 6896871880633903074, guid: ef7f886199501aa45b52fc47e36f24ba,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7829,20 +7817,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 450152971}
-    - target: {fileID: 145121749742333, guid: 37325dfa11bd9524898dfe8c6b34b0f5, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ContinueBttn
-      objectReference: {fileID: 0}
     - target: {fileID: 1692294051965859973, guid: 37325dfa11bd9524898dfe8c6b34b0f5,
         type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 450152974}
-    - target: {fileID: 1692294051965859973, guid: 37325dfa11bd9524898dfe8c6b34b0f5,
-        type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SFXVolume
-      objectReference: {fileID: 0}
     - target: {fileID: 1877205146198534614, guid: 37325dfa11bd9524898dfe8c6b34b0f5,
         type: 3}
       propertyPath: m_Pivot.x
@@ -7906,27 +7885,27 @@ PrefabInstance:
     - target: {fileID: 1877205146198534614, guid: 37325dfa11bd9524898dfe8c6b34b0f5,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1877205146198534614, guid: 37325dfa11bd9524898dfe8c6b34b0f5,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1877205146198534614, guid: 37325dfa11bd9524898dfe8c6b34b0f5,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1877205146198534614, guid: 37325dfa11bd9524898dfe8c6b34b0f5,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -0.20904541
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1877205146198534614, guid: 37325dfa11bd9524898dfe8c6b34b0f5,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -2.543579
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1877205146198534614, guid: 37325dfa11bd9524898dfe8c6b34b0f5,
         type: 3}
@@ -7948,56 +7927,36 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 450152971}
-    - target: {fileID: 3299551180706979979, guid: 37325dfa11bd9524898dfe8c6b34b0f5,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ExitBttn
-      objectReference: {fileID: 0}
     - target: {fileID: 6707265642048454374, guid: 37325dfa11bd9524898dfe8c6b34b0f5,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 450152971}
-    - target: {fileID: 6707265642048454374, guid: 37325dfa11bd9524898dfe8c6b34b0f5,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SettingsBttn
-      objectReference: {fileID: 0}
-    - target: {fileID: 7203329971619197768, guid: 37325dfa11bd9524898dfe8c6b34b0f5,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 450152971}
     - target: {fileID: 7203329971619197768, guid: 37325dfa11bd9524898dfe8c6b34b0f5,
         type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ReturnToMainBttn
-      objectReference: {fileID: 0}
-    - target: {fileID: 7733487872599188617, guid: 37325dfa11bd9524898dfe8c6b34b0f5,
-        type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 450152971}
     - target: {fileID: 7733487872599188617, guid: 37325dfa11bd9524898dfe8c6b34b0f5,
         type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: MainMenuBttn
-      objectReference: {fileID: 0}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 450152971}
     - target: {fileID: 8633844739390534676, guid: 37325dfa11bd9524898dfe8c6b34b0f5,
         type: 3}
       propertyPath: m_Name
       value: Pause Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 8633844739390534676, guid: 37325dfa11bd9524898dfe8c6b34b0f5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9197420041014817007, guid: 37325dfa11bd9524898dfe8c6b34b0f5,
         type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 450152974}
-    - target: {fileID: 9197420041014817007, guid: 37325dfa11bd9524898dfe8c6b34b0f5,
-        type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: MusicVolume
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
