@@ -13,7 +13,24 @@ public class AudioManager : MonoBehaviour
 
     public Sound[] SFXSounds;
 
-    private void Awake() => ServiceLocator.Instance.RegisterService(this);
+    public static AudioManager Instance { get; private set; }
+
+    private void Awake()
+    {
+        // Check if an AudioManager instance already exists
+        if (Instance != null && Instance != this)
+        {
+            // If an instance already exists and it's not this one, destroy this one
+            Destroy(gameObject);
+        }
+        else
+        {
+            // If no instance exists, set this one as the instance
+            Instance = this;
+            ServiceLocator.Instance.RegisterService(this);
+            DontDestroyOnLoad(gameObject); // Make this object persist across scenes
+        }
+    }
 
     private void Start() => PlayMusic("Main Menu");
 
@@ -24,9 +41,15 @@ public class AudioManager : MonoBehaviour
         Sound currentSound = Array.Find(musicSounds, sound => sound.name == name);
 
         if (currentSound == null)
+        {
             Debug.Log("Sound not found");
+        }
         else
         {
+            if (musicSource.isPlaying)
+                musicSource.Stop();
+
+            // Start the new music
             musicSource.clip = currentSound.clip;
             musicSource.Play();
         }

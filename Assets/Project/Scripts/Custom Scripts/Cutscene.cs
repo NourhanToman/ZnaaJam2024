@@ -88,5 +88,9 @@ public class Cutscene : MonoBehaviour
         }
     }
 
-    private void ReturnToMainMenu() => SceneManager.LoadScene(0);
+    private void ReturnToMainMenu()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadSceneAsync(0);
+    }
 }

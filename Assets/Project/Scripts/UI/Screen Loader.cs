@@ -7,6 +7,22 @@ public class ScreenLoader : MonoBehaviour
     [SerializeField] private GameObject loadingScreen;
     [SerializeField] private Slider progressBar;
 
+    private ServiceLocator ServiceLocator => ServiceLocator.Instance;
+
+    public static ScreenLoader Instance { get; private set; }
+
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+            Destroy(gameObject);
+        else
+        {
+            Instance = this;
+            ServiceLocator.Instance.RegisterService(this);
+            DontDestroyOnLoad(gameObject);
+        }
+    }
+
     public void LoadScene(int sceneIndex) => StartCoroutine(LoadScene_Co(sceneIndex));
 
     private IEnumerator LoadScene_Co(int sceneIndex)
@@ -31,5 +47,14 @@ public class ScreenLoader : MonoBehaviour
             }
             yield return null;
         }
+
+        asyncLoad.completed += LoadSceneAndSetupCamera;
+    }
+
+    private void LoadSceneAndSetupCamera(AsyncOperation asyncLoad)
+    {
+        ServiceLocator.GetService<CameraManager>().StartCoroutineForCamera();
+
+        Time.timeScale = 1;
     }
 }

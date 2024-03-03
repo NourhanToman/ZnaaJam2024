@@ -12,40 +12,32 @@ public class MainmenuUIManager : MonoBehaviour
 
     private AudioManager AudioManager;
 
-    private void Start()
-    {
-        AudioManager = ServiceLocator.GetService<AudioManager>();
-    }
+    private void Start() => AudioManager = ServiceLocator.GetService<AudioManager>();
 
     public void StartGameBttn()
     {
         AudioManager.PlaySFX("Button");
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
-
-        Time.timeScale = 1;
-
-        AudioManager.PlayMusic("Level");
-        asyncLoad.completed += LoadSceneAndSetupCamera;
+        SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
     }
+
     public void EasyGameBttn()
     {
         AudioManager.PlaySFX("Button");
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
+        AudioManager.PlayMusic("Level");
 
         Time.timeScale = 1;
 
-        AudioManager.PlayMusic("Level");
-        asyncLoad.completed += LoadSceneAndSetupCamera;
+        ServiceLocator.Instance.GetService<ScreenLoader>().LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
+
     public void HardGameBttn()
     {
         AudioManager.PlaySFX("Button");
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 2);
+        AudioManager.PlayMusic("Level");
 
         Time.timeScale = 1;
 
-        AudioManager.PlayMusic("Level");
-        asyncLoad.completed += LoadSceneAndSetupCamera;
+        ServiceLocator.Instance.GetService<ScreenLoader>().LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
     }
 
     private void LoadSceneAndSetupCamera(AsyncOperation asyncLoad)
