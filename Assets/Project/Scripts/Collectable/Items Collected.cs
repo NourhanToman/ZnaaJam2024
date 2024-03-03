@@ -10,6 +10,7 @@ public class ItemsCollected : MonoBehaviour
         {
             Event.GameAction?.Invoke();
             Destroy(gameObject);
+            Debug.Log("collected");
         }
     }
 }
