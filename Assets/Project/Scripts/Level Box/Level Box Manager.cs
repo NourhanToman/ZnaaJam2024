@@ -8,9 +8,9 @@ public class LevelBoxManager : MonoBehaviour
     [SerializeField] private GameObject _player;
     [SerializeField] internal GameEvents levelCompleted;
 
-    private LevelBox _boxRotation;
+    private LevelBox _levelBox;
 
-    private int _boxRotationIndex = 0;
+    private int _levelBoxIndex = 0;
     private Coroutine currentPlayerScale;
 
     private ServiceLocator _serviceLocator;
@@ -29,32 +29,34 @@ public class LevelBoxManager : MonoBehaviour
 
     internal void SetLevelBox()
     {
-        if (_boxRotationIndex >= _boxRotationList.Count)
-            _boxRotationIndex = 0;
+        if (_levelBoxIndex >= _boxRotationList.Count)
+            return;
 
-        _boxRotation = _boxRotationList[_boxRotationIndex];
+        _levelBox = _boxRotationList[_levelBoxIndex];
 
-        _boxRotationIndex++;
+        _levelBoxIndex++;
 
         if (currentPlayerScale != null)
             StopCoroutine(currentPlayerScale);
     }
 
-    internal LevelBox GetBoxRotation() => _boxRotation;
+    internal LevelBox GetBoxRotation() => _levelBox;
 
     private void SetLevelCompleted()
     {
-        _boxRotation.Coolider2D.enabled = false;
+        _levelBox.Coolider2D.enabled = false;
+
+        _levelBox.StartCoroutine(_levelBox.DisbaleObstcals());
 
         SetLevelBox();
         currentPlayerScale = StartCoroutine(SetPlayerScale());
 
-        _serviceLocator.GetService<PlayerJumping>().SetJumpForce = _boxRotation.PlayerJumpForce;
+        _serviceLocator.GetService<PlayerJumping>().SetJumpForce = _levelBox.PlayerJumpForce;
     }
 
     private IEnumerator SetPlayerScale()
     {
-        Vector3 targetScale = new(_boxRotation.PlayerScale, _boxRotation.PlayerScale);
+        Vector3 targetScale = new(_levelBox.PlayerScale, _levelBox.PlayerScale);
 
         while (Vector3.Distance(_player.transform.localScale, targetScale) > 0.01f)
         {

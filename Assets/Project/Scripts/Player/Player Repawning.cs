@@ -6,27 +6,20 @@ public class PlayerRepawning : MonoBehaviour
     [SerializeField] private Collider2D _playerCollider;
     [SerializeField] private SpriteRenderer _playerSpriteRenderer;
     [SerializeField][Range(0, 10)] private float _disableColliderInSeconds = 1.5f;
-    [SerializeField] private Transform[] _playerSpawnPoints;
+    [SerializeField] private Transform _playerSpawnPoint;
 
     [SerializeField] private GameEvents _gameEvents;
 
-    private Transform _playerSpawnPoint;
-    private int _currentSpawnPointIndex = 0;
+    private ServiceLocator ServiceLocator => ServiceLocator.Instance;
 
-    private void Awake() => ServiceLocator.Instance.RegisterService(this);
-
-    private void Start() => _playerSpawnPoint = _playerSpawnPoints[_currentSpawnPointIndex];
-
-    internal void OnLevelCompleted()
-    {
-        _currentSpawnPointIndex++;
-        _playerSpawnPoint = _playerSpawnPoints[_currentSpawnPointIndex];
-    }
+    private void Awake() => ServiceLocator.RegisterService(this);
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag(GameConstant.ObstacleTag))
         {
+            ServiceLocator.GetService<AudioManager>().PlaySFX("Hit");
+
             gameObject.transform.position = _playerSpawnPoint.position;
             StartCoroutine(DisableColliders());
             StartCoroutine(FlashColor());

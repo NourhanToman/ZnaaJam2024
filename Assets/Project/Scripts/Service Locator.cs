@@ -24,5 +24,11 @@ public class ServiceLocator
             throw new ApplicationException("The requested service is not registered");
     }
 
-    public void RegisterService<T>(T service) => services[typeof(T)] = service;
+    public void RegisterService<T>(T service)
+    {
+        services[typeof(T)] = service;
+
+        if (service is UnityEngine.Object unityObject)
+            UnityEngine.Object.DontDestroyOnLoad(unityObject);
+    }
 }
