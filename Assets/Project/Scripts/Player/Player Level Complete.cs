@@ -88,13 +88,16 @@ public class PlayerLevelComplete : MonoBehaviour
     {
         int[] counters = new int[] { _collectablesManager._dropletWaterCounter, _collectablesManager._fertilizerCounter, _collectablesManager._sunlightCounter };
 
-        int count = counters.Count(c => c >= 3);
+        int count = 0;
 
-        if (count == 0)
-            count = counters.Count(c => c >= 2);
-
-        if (count == 0)
-            count = counters.Count(c => c >= 1);
+        while (counters.All(c => c > 0))
+        {
+            count++;
+            for (int i = 0; i < counters.Length; i++)
+            {
+                counters[i]--;
+            }
+        }
 
         for (int i = 0; i < count; i++)
         {
@@ -106,7 +109,6 @@ public class PlayerLevelComplete : MonoBehaviour
         {
             // 1 star
             Debug.Log("1 star");
-            
         }
         else if (count == 2)
         {

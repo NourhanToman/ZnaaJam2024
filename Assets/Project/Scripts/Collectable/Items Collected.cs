@@ -9,6 +9,8 @@ public class ItemsCollected : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private ServiceLocator _serviceLocator;
 
+    private bool isCollected = false;
+
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -17,8 +19,9 @@ public class ItemsCollected : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag(GameConstant.PlayerTag))
+        if (!isCollected && collision.gameObject.CompareTag(GameConstant.PlayerTag))
         {
+            isCollected = true;
             Event.GameAction?.Invoke();
             CheckItemTag();
             StartCoroutine(FadeOutAndDestroy());

@@ -24,8 +24,6 @@ public class LevelBox : MonoBehaviour
     {
         Coolider2D = GetComponent<Collider2D>();
         rb = GetComponent<Rigidbody2D>();
-
-        SetRandomInitialRotation();
     }
 
     private void FixedUpdate()
@@ -47,18 +45,8 @@ public class LevelBox : MonoBehaviour
         SetObstacleToFalse();
     }
 
-    private int lastDirection = -1;
-
-    private void SetRandomInitialRotation()
+    internal void SetRandomInitialRotation(int randomDirection)
     {
-        int randomDirection;
-        do
-        {
-            randomDirection = UnityEngine.Random.Range(0, 4);
-        } while (randomDirection == lastDirection);
-
-        lastDirection = randomDirection;
-
         switch (randomDirection)
         {
             case 0: // Up

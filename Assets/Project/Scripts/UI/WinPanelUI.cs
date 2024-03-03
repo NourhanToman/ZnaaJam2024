@@ -12,10 +12,8 @@ public class WinPanelUI : MonoBehaviour
     private int starCount;
 
 
-    private void Start()
-    {
-        starCount = 0;
-    }
+    private void Start()=>starCount = 0;
+    
 
 
     public void WinCanvas(int count)
@@ -34,7 +32,7 @@ public class WinPanelUI : MonoBehaviour
     }
     public void MainMenuBttn()
     {
-        //AudioManager.instance.PlaySFX("ButtonClick");
+        ServiceLocator.Instance.GetService<AudioManager>().PlaySFX("ButtonClick");
         SceneManager.LoadSceneAsync(0);
     }
 }

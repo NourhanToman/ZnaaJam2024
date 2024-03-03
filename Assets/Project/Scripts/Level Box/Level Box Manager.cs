@@ -15,10 +15,14 @@ public class LevelBoxManager : MonoBehaviour
 
     private ServiceLocator _serviceLocator;
 
+    private int _lastRotation = -1;
+
     private void Awake()
     {
         _serviceLocator = ServiceLocator.Instance;
         _serviceLocator.RegisterService(this);
+
+        SetRandomInitialRotation();
     }
 
     private void Start() => SetLevelBox();
@@ -38,6 +42,21 @@ public class LevelBoxManager : MonoBehaviour
 
         if (currentPlayerScale != null)
             StopCoroutine(currentPlayerScale);
+    }
+
+    private void SetRandomInitialRotation()
+    {
+        int newRotation;
+        foreach (var box in _boxRotationList)
+        {
+            do
+            {
+                newRotation = Random.Range(0, 4);
+            } while (newRotation == _lastRotation);
+
+            box.SetRandomInitialRotation(newRotation);
+            _lastRotation = newRotation;
+        }
     }
 
     internal LevelBox GetBoxRotation() => _levelBox;

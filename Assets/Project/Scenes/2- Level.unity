@@ -2064,8 +2064,8 @@ GameObject:
   m_Component:
   - component: {fileID: 483921885}
   - component: {fileID: 483921888}
-  - component: {fileID: 483921887}
   - component: {fileID: 483921886}
+  - component: {fileID: 483921887}
   - component: {fileID: 483921889}
   m_Layer: 0
   m_Name: Droplet
@@ -4359,6 +4359,7 @@ MonoBehaviour:
   - {fileID: 426174191}
   - {fileID: 1314520522}
   - {fileID: 113298663}
+  _gameEvents: {fileID: 11400000, guid: c159caf03142c8b48bc3d8976c77b8a1, type: 2}
 --- !u!1 &1275117380
 GameObject:
   m_ObjectHideFlags: 0
@@ -4693,10 +4694,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a3322811a77c7448957dd99cf9bedbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _dropletWater: {fileID: 2012654491}
-  _fertilizer: {fileID: 269563791}
-  _sunLight: {fileID: 879594396}
-  fadeInTime: 1
 --- !u!1 &1307049400
 GameObject:
   m_ObjectHideFlags: 0
