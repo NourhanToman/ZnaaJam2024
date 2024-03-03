@@ -18,26 +18,26 @@ public class PlayerHealth : MonoBehaviour
 
     public void CalculateHealth(int damage)
     {
-        if (_healthSpriteIndex >= _healthSprite.Length)
-            return;
-
         _playerHealth -= damage;
 
-        if (_playerHealth <= 75)
+        if (_playerHealth >= 75)
         {
             _spriteRenderer.sprite = _healthSprite[_healthSpriteIndex];
             _healthSpriteIndex++;
         }
-        else if (_playerHealth <= 50)
+        else if (_playerHealth >= 50)
         {
             _spriteRenderer.sprite = _healthSprite[_healthSpriteIndex];
             _healthSpriteIndex++;
         }
-        else if (_playerHealth <= 25)
+        else if (_playerHealth >= 25)
             _spriteRenderer.sprite = _healthSprite[_healthSpriteIndex];
         else if (_playerHealth <= 0)
         {
+            Time.timeScale = 0;
+
             ServiceLocator.Instance.GetService<AudioManager>().PlaySFX("Game Over");
+            ServiceLocator.Instance.GetService<GameOverPanelUI>().GameOverCanvas();
         }
     }
 }
