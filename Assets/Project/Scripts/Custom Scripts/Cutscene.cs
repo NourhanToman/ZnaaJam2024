@@ -16,6 +16,8 @@ public class Cutscene : MonoBehaviour
 
     internal bool IsCutscenePlaying { get; private set; }
 
+    private void Awake() => ServiceLocator.Instance.RegisterService(this);
+
     private void Start()
     {
         // Set the size of the image to match the screen size

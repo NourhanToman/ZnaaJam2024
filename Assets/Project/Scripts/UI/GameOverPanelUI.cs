@@ -1,21 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class GameOverPanelUI : MonoBehaviour
 {
-    [SerializeField] Canvas loseCanvas;
+    [SerializeField] private Canvas loseCanvas;
 
-    public void GameOverCanvas()
-    {
-        loseCanvas.gameObject.SetActive(true);
-    }
-   
+    public void GameOverCanvas() => loseCanvas.gameObject.SetActive(true);
+
     public void MainMenuBttn()
     {
-        //AudioManager.instance.PlaySFX("ButtonClick");
+        ServiceLocator.Instance.GetService<AudioManager>().PlaySFX("Button");
         SceneManager.LoadSceneAsync(0);
     }
 }
