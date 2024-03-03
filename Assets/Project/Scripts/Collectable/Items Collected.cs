@@ -7,14 +7,20 @@ public class ItemsCollected : MonoBehaviour
     [SerializeField] private float fadeOutDuration = 1f;
 
     private SpriteRenderer spriteRenderer;
+    private ServiceLocator _serviceLocator;
 
-    private void Awake() => spriteRenderer = GetComponent<SpriteRenderer>();
+    private void Awake()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        _serviceLocator = ServiceLocator.Instance;
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag(GameConstant.PlayerTag))
         {
             Event.GameAction?.Invoke();
+            CheckItemTag();
             StartCoroutine(FadeOutAndDestroy());
         }
     }
@@ -32,6 +38,16 @@ public class ItemsCollected : MonoBehaviour
             yield return null;
         }
 
-        Destroy(gameObject);
+        gameObject.SetActive(false);
+    }
+
+    private void CheckItemTag()
+    {
+        if (gameObject.CompareTag(GameConstant.DropletWaterTag))
+            _serviceLocator.GetService<CollectablesManager>()._dropletWaterCounter++;
+        else if (gameObject.CompareTag(GameConstant.FertilizerTag))
+            _serviceLocator.GetService<CollectablesManager>()._fertilizerCounter++;
+        else if (gameObject.CompareTag(GameConstant.SunlightTag))
+            _serviceLocator.GetService<CollectablesManager>()._sunlightCounter++;
     }
 }

@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Linq;
 using UnityEngine;
 
 public class PlayerLevelComplete : MonoBehaviour
@@ -13,6 +14,16 @@ public class PlayerLevelComplete : MonoBehaviour
     [SerializeField] private StayInCollider2D[] stayInColliders;
 
     [SerializeField] private SpriteRenderer[] _fadeOut;
+
+    [Header("Win Animator")]
+    [SerializeField] private Animator[] _animator;
+
+    private ServiceLocator _serviceLocator;
+    private CollectablesManager _collectablesManager;
+
+    private void Awake() => _serviceLocator = ServiceLocator.Instance;
+
+    private void Start() => _collectablesManager = _serviceLocator.GetService<CollectablesManager>();
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -52,7 +63,7 @@ public class PlayerLevelComplete : MonoBehaviour
 
     private IEnumerator FadeOutChildren()
     {
-        float fadeSpeed = 0.05f; // Adjust this value to control the speed of the fade out
+        float fadeSpeed = 0.05f;
 
         foreach (var sprite in _fadeOut)
         {
@@ -62,10 +73,51 @@ public class PlayerLevelComplete : MonoBehaviour
             {
                 spriteColor.a -= fadeSpeed;
                 sprite.color = spriteColor;
-                yield return new WaitForSeconds(0.1f); // Adjust this value to control the delay between each fade step
+                yield return new WaitForSeconds(0.1f);
             }
         }
 
-        gameObject.SetActive(false);
+        CheckPlayerWinCondition();
+        _playerCollider[0].gameObject.SetActive(false);
+    }
+
+    private void CheckPlayerWinCondition()
+    {
+        int[] counters = new int[] { _collectablesManager._dropletWaterCounter, _collectablesManager._fertilizerCounter, _collectablesManager._sunlightCounter };
+
+        int count = counters.Count(c => c >= 3);
+
+        if (count == 0)
+            count = counters.Count(c => c >= 2);
+
+        if (count == 0)
+            count = counters.Count(c => c >= 1);
+
+        for (int i = 0; i < count; i++)
+        {
+            _animator[i].gameObject.SetActive(true);
+            _animator[i].SetBool(GameConstant.Win, true);
+        }
+
+        if (count == 1)
+        {
+            // 1 star
+            Debug.Log("1 star");
+        }
+        else if (count == 2)
+        {
+            // 2 stars
+            Debug.Log("2 stars");
+        }
+        else if (count == 3)
+        {
+            // 3 stars
+            Debug.Log("3 stars");
+        }
+        else
+        {
+            //lose
+            Debug.Log("lose");
+        }
     }
 }

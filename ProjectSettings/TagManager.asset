@@ -9,6 +9,9 @@ TagManager:
   - Obstacle
   - Level Complete
   - Level Finish
+  - Droplet Water
+  - Fertilizer
+  - Sunlight
   layers:
   - Default
   - TransparentFX
