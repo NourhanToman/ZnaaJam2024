@@ -4521,7 +4521,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1252707856}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -8446,6 +8446,7 @@ MonoBehaviour:
   - {fileID: 1896059450}
   - {fileID: 481293050}
   _player: {fileID: 1252707855}
+  _light2D: {fileID: 1044801126}
   levelCompleted: {fileID: 11400000, guid: 0538f18d5a495e247b577d4526be11ab, type: 2}
 --- !u!1001 &1920392927
 PrefabInstance:

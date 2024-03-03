@@ -22,7 +22,6 @@ public class Cutscene : MonoBehaviour
 
     private void Start()
     {
-        // Set the size of the image to match the screen size
         RectTransform rectTransformCutsceneImage = cutsceneImage.GetComponent<RectTransform>();
         rectTransformCutsceneImage.sizeDelta = new Vector2(Screen.width, Screen.height);
 

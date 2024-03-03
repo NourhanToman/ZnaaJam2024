@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class LevelBoxManager : MonoBehaviour
 {
     [SerializeField] private List<LevelBox> _boxRotationList;
     [SerializeField] private GameObject _player;
+    [SerializeField] private Light2D _light2D;
     [SerializeField] internal GameEvents levelCompleted;
 
     private LevelBox _levelBox;
@@ -71,6 +73,8 @@ public class LevelBoxManager : MonoBehaviour
         currentPlayerScale = StartCoroutine(SetPlayerScale());
 
         _serviceLocator.GetService<PlayerJumping>().SetJumpForce = _levelBox.PlayerJumpForce;
+
+        _light2D.pointLightOuterRadius += 1;
     }
 
     private IEnumerator SetPlayerScale()
