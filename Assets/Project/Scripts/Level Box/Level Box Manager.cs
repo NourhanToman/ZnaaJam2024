@@ -30,7 +30,7 @@ public class LevelBoxManager : MonoBehaviour
     internal void SetLevelBox()
     {
         if (_levelBoxIndex >= _boxRotationList.Count)
-            _levelBoxIndex = 0;
+            return;
 
         _levelBox = _boxRotationList[_levelBoxIndex];
 

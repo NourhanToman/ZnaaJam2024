@@ -8,6 +8,7 @@ TagManager:
   - Seeds
   - Obstacle
   - Level Complete
+  - Level Finish
   layers:
   - Default
   - TransparentFX
