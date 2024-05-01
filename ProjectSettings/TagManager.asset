@@ -3,7 +3,15 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Ground
+  - Seeds
+  - Obstacle
+  - Level Complete
+  - Level Finish
+  - Droplet Water
+  - Fertilizer
+  - Sunlight
   layers:
   - Default
   - TransparentFX
@@ -11,9 +19,9 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
+  - Seeds
+  - Player
+  - Ground
   - 
   - 
   - 
@@ -38,6 +46,15 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 3946506189
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Obsticals
+    uniqueID: 4157693981
+    locked: 0
+  - name: Player
+    uniqueID: 2143830377
     locked: 0
